@@ -3,6 +3,15 @@
   --foreground: #171717;
 }
 
+/* 
+The prefers-color-scheme CC media feature is used to detect if a user has requested
+light or dark color themes. A user indicates their preference through an operating
+system settings or a user agent settings (browsers, email clients, etc.).
+
+Using prefer-color-scheme is allowed in cross-origin <svg> and <iframe> elements.
+Cross-origin elements are elements retrieved from a different host than the page
+that is referencing them.
+ */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -24,7 +33,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* `*` means `select all elements` */
 * {
+  /* 
+  border-box tells the browser to account for any boarder or padding in the values
+  you specify for an element's width and height. If you set an element's width to
+  100px, that 100px will include any boarder or padding you added, and the content
+  box will shink to absorb the extra width.
+  So, if you have an element and you add a boarder or padding to it you don't have
+  to adjust for extra width or height and it makes it much easier to size elements.
+   */
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -35,6 +53,18 @@ a {
   text-decoration: none;
 }
 
+/* 
+color-scheme: dark;
+
+The color-scheme CSS property allows an element to indicate which color schemes it can
+comfortably be rendered in. User agents change the following aspects of the UI chrome
+to match the used color scheme:
+
+- The color of the canvas surface.
+- The default colors of scrollbars and other interaction UI.
+- The default colors of form controls.
+- The default colors of other browser-provided UI, such as "spellcheck" underlines.
+ */
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

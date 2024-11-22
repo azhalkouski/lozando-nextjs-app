@@ -1,3 +1,21 @@
+/* 
+vh is a static unit equal to the size of the viewport when the browser UI is
+in its smallest shape
+
+In 2021 the new CSS units were accepted int the CSS spec
+
+So, now we have lange (lvh), small (svh), dynamic (dvh) and traditional vh units.
+- lvh and lvw are essentially how the vh unit currently acts (browser smallest shape)
+- svh gives you units that you can use to fill the screen when the browser UI is at
+its largest, and the website's content is at its smallest.
+
+
+So, when you first load a webpage on your mobile device and the browser UI is at its
+biggest size, meaning you viewport is at its smallest untill you begine to scroll down,
+if you set your min-height to be using vh or lvh, it might overflow under the browser's
+UI. If you use svh it is guaranteed that your content will fit the available viewport
+while the browser's largest UI.
+ */
 .page {
   --gray-rgb: 0, 0, 0;
   --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
@@ -51,14 +69,7 @@
   margin-bottom: 8px;
 }
 
-.main code {
-  font-family: inherit;
-  background: var(--gray-alpha-100);
-  padding: 2px 4px;
-  border-radius: 4px;
-  font-weight: 600;
-}
-
+/* ctas means Calls to Action */
 .ctas {
   display: flex;
   gap: 16px;
@@ -137,6 +148,7 @@ a.secondary {
 
   .main {
     align-items: center;
+    width: 100%;
   }
 
   .main ol {

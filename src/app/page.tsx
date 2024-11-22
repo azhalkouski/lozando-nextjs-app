@@ -9,16 +9,22 @@ export default async function Home() {
     throw new Error('API Key is not defined');
   }
 
+  let products: ProductT[] = [];
   const response = await fetch('http://localhost:3000/api/products', {
     headers: {
       'x-api-key': API_KEY,
     }
   });
-  const products = await response.json() as ProductT[];
+
+  if (response.ok) {
+    products = await response.json() as ProductT[];
+  } else {
+    // logger.error('Failed to load resource: http://localhost:3000/api/products');
+  }
 
   return (
-    <div className={styles.page}>
-      <main className={styles.main} style={{border: '1px solid yellow'}}>
+    <div className={styles.page} style={{border: '2px solid green'}}>
+      <main className={styles.main} style={{border: '1px solid red'}}>
         <header>
           <h1>Lozando Home</h1>
         </header>
@@ -32,7 +38,7 @@ export default async function Home() {
         </section>
 
       </main>
-      <footer className={styles.footer}>
+      <footer className={styles.footer} style={{ border: '1px solid orange' }}>
         <a
           href="https://github.com/azhalkouski/lozando-nextjs-app"
           target="_blank"
