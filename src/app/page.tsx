@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Logo from "./ui/components/logo";
 import styles from "./page.module.css";
 import { ProductT } from './types';
 
@@ -24,7 +25,11 @@ export default async function Home() {
 
   return (
     <div className={styles.page} style={{border: '2px solid green'}}>
+      <header>
+        <Logo />
+      </header>
       <main className={styles.main} style={{border: '1px solid red'}}>
+        EMBEDDED PAGE
         <header>
           <h1>Lozando Home</h1>
         </header>
