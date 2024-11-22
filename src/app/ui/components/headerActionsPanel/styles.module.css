@@ -1,0 +1,9 @@
+.ctas {
+  display: flex;
+}
+
+@media (prefers-color-scheme: dark) {
+  .iconButton:hover {
+    background-color: #ad95952d; /* Background color on hover in dark mode */
+  }
+}
