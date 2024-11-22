@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Logo from "./ui/components/logo";
+import CustomerTypeSegmentNavigation from "./ui/components/customerTypeSegmentNavigation";
+import HeaderActionsPanel from "./ui/components/headerActionsPanel";
 import styles from "./page.module.css";
 import { ProductT } from './types';
 
@@ -25,8 +27,16 @@ export default async function Home() {
 
   return (
     <div className={styles.page} style={{border: '2px solid green'}}>
-      <header>
-        <Logo />
+      <header className={styles.pageHeader}>
+        <div className={styles.customerTypeSegmentNavigation}>
+          <CustomerTypeSegmentNavigation />
+        </div>
+        <div className={styles.headerLogo}>
+          <Logo />
+        </div>
+        <div className={styles.headerActionsPanel}>
+          <HeaderActionsPanel />
+        </div>
       </header>
       <main className={styles.main} style={{border: '1px solid red'}}>
         EMBEDDED PAGE

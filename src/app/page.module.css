@@ -45,6 +45,24 @@ while the browser's largest UI.
   }
 }
 
+.pageHeader {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 200px 1fr 200px;
+  grid-template-rows: 1fr;
+  justify-items: center;
+}
+
+.headerLogo {
+  justify-self: center;
+  display: flex;
+  align-items: center;
+}
+
+.headerActionsPanel {
+  justify-self: end;
+}
+
 .main {
   height: 100%;
   width: 70%;
@@ -106,6 +124,10 @@ a.secondary {
   min-width: 180px;
 }
 
+.customerTypeSegmentNavigation {
+  display: block;
+}
+
 .footer {
   grid-row-start: 3;
   display: flex;
@@ -146,6 +168,14 @@ a.secondary {
     padding-bottom: 80px;
   }
 
+  .pageHeader {
+    grid-template-columns: 1fr 200px;
+  }
+
+  .headerLogo {
+    justify-self: start;
+  }
+
   .main {
     align-items: center;
     width: 100%;
@@ -167,6 +197,10 @@ a.secondary {
 
   a.secondary {
     min-width: auto;
+  }
+
+  .customerTypeSegmentNavigation {
+    display: none;
   }
 
   .footer {
