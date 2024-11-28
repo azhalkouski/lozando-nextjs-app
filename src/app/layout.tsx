@@ -18,14 +18,16 @@ export const metadata: Metadata = {
   description: "Lozando Home Page",
 };
 
-export default function RootLayout({
+const API_KEY = process.env.LOZANDO_REST_API_KEY;
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // if root segment is "/" then redirect to "/women-page"
-  // import { redirect } from 'next/navigation'
-  // redirect("/women-page")
+  if (!API_KEY) {
+    throw new Error('API Key is not defined');
+  }
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
