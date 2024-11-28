@@ -17,9 +17,23 @@ type Props = {
   }>;
 }
 
+const headerTitles = {
+  "women-home": "Women Home",
+  "men-home": "Men Home"
+} as { [key: string]: string };
+
 
 export default async function CustomerSpecificHome({ params }: Props) {
   const { customerSpecificHome } = await params;
+  const pageSlug = customerSpecificHome.toString();
+
+  const headerTitle = pageSlug in headerTitles
+    ? headerTitles[pageSlug]
+    : '';
+
+  if (headerTitle === '') {
+    // TODO: logger.warn(`HeaderTitles don't have a title for pageSlug "${pageSlug}".`);
+  }
 
   let products: ProductT[] = [];
   const response = await fetch('http://localhost:3000/api/products', {
@@ -54,10 +68,8 @@ export default async function CustomerSpecificHome({ params }: Props) {
         </div>
       </header>
       <main className={styles.main} style={{border: '1px solid red'}}>
-        EMBEDDED PAGE
-        {customerSpecificHome}
         <header>
-          <h1>Lozando Home</h1>
+          <h1>{headerTitle}</h1>
         </header>
         <section>
           <h2>Products</h2>
