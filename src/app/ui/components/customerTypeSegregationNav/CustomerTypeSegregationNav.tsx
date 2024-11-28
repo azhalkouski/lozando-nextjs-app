@@ -22,8 +22,8 @@ import styles from "./styles.module.css";
 function CustomerTypeSegregationNav() {
   return (
     <div className={styles.ctas}>
-      <Link href="/women-page" className={styles.primary}>Women</Link>
-      <Link href="/men-page" className={styles.primary}>Men</Link>
+      <Link href="/women-home" className={styles.primary}>Women</Link>
+      <Link href="/men-home" className={styles.primary}>Men</Link>
     </div>
   );
 }
