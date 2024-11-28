@@ -2,51 +2,44 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import useCurrenCustomerTypeSegment from "../../hooks/useCurrenCustomerTypeSegment";
+import { CategoryGroupLinksT, RouteSegmentsEnum } from "@/app/types";
 
 import styles from "../../../page.module.css";
 
-type customerType = "women" | "men";
 
-const categoriesGroupsLinks = {
+const categoryGroupsLinks: CategoryGroupLinksT = {
   women: [
     {
-      href: "/women-clothing",
-      groupTitle: "Clothing"
+      href: RouteSegmentsEnum.WomenClothing,
+      linkTitle: "Clothing",
     },
     {
-      href: "/women-shoes",
-      groupTitle: "Shoes"
+      href: RouteSegmentsEnum.WomenShoes,
+      linkTitle: "Shoes",
     },
-  ],
-  men: [
+  ],  men: [
     {
-      href: "/men-clothing",
-      groupTitle: "Clothing"
+      href: RouteSegmentsEnum.MenClothing,
+      linkTitle: "Clothing",
     },
     {
-      href: "/men-shoes",
-      groupTitle: "Shoes"
+      href: RouteSegmentsEnum.MenShoes,
+      linkTitle: "Shoes",
     },
   ]
-} as {[key in customerType]: {href: string, groupTitle: string}[]};
+};
 
 function ProductCategoriesGroupsNav() {
-  const pathname = usePathname();
+  const currentCustomerTypeSegment = useCurrenCustomerTypeSegment();
 
-  const customerTypeSegment = pathname.slice(1).split('-')[0] as customerType;
-  const links = categoriesGroupsLinks[customerTypeSegment];
-
-  if (links === undefined) {
-    // TODO: logger.error(`Unsupported route segment as customerTypeSegment - ${customerTypeSegment}`);
-    // ! Error boudaries? React suspense?
-    throw new Error(`Unsupported route segment as customerTypeSegment`);
-  }
+  const links = categoryGroupsLinks[currentCustomerTypeSegment];
 
   return (
     <div className={styles.ctas}>
-      {links.map(({href, groupTitle}) => {
+      {links.map(({href, linkTitle}) => {
         return (
-          <Link key={href} href={href} className={styles.secondary}>{groupTitle}</Link>
+          <Link key={href} href={href} className={styles.secondary}>{linkTitle}</Link>
         );
       })}
     </div>

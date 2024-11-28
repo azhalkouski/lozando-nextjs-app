@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Logo from "../ui/components/logo";
-import CustomerTypeSegregationNav from "../ui/components/customerTypeSegregationNav";
+import CustomerTypeSegmentNav from "../ui/components/customerTypeSegmentNav";
 import ProductCategoriesGroupsNav from "../ui/components/productCategoriesGroupsNav";
 import HeaderActionsPanel from "../ui/components/headerActionsPanel";
 import ProductsSearch from "../ui/components/productsSearch";
@@ -52,7 +52,7 @@ export default async function CustomerSpecificHome({ params }: Props) {
     <div className={styles.page} style={{border: '2px solid green'}}>
       <header className={styles.pageHeader}>
         <div className={styles.customerTypeSegregationNav}>
-          <CustomerTypeSegregationNav />
+          <CustomerTypeSegmentNav />
         </div>
         <div className={styles.headerLogo}>
           <Logo />
