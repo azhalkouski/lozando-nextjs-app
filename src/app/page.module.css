@@ -70,10 +70,12 @@ while the browser's largest UI.
 
 .productCategoriesGroupsNav {
   grid-area: prodCatsGroupsNav;
+  width: 100%;
 }
 
 .productsSearch {
   grid-area: productsSearch;
+  width: 100%;
 }
 
 .main {
