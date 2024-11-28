@@ -1,4 +1,7 @@
+"use client"
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import styles from "./styles.module.css";
 
 /**
@@ -19,22 +22,36 @@ import styles from "./styles.module.css";
  * dedicated for Women and for Men.
  */
 
+const segmentationLinks = [
+  {
+    href: "/women-home",
+    segmentTitle: "Women"
+  },
+  {
+    href: "/men-home",
+    segmentTitle: "Men"
+  },
+];
+
 function CustomerTypeSegregationNav() {
+  const pathname = usePathname();
+
+  function getLinkClassName(href: string) {
+    return pathname === href ? styles.primary : styles.secondary;
+  }
+
   return (
     <div className={styles.ctas}>
-      <Link href="/women-home" className={styles.primary}>Women</Link>
-      <Link href="/men-home" className={styles.primary}>Men</Link>
+      {segmentationLinks.map(({href, segmentTitle}) => {
+        return (
+          <Link key={href} href={href} className={getLinkClassName(href)}>
+            {segmentTitle}
+          </Link>
+
+        );
+      })}
     </div>
   );
 }
 
 export default CustomerTypeSegregationNav;
-
-/**
- * Active Nav Links
- * 
- * You can use the usePathname() hook to determine if nav Link is active.
- * 
- * Since usePathname() is a client hook, you need to extract the nav links into
- * a Client Component, which can be imported into your layout or template.
- */

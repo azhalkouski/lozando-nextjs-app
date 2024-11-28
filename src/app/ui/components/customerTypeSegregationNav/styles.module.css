@@ -26,11 +26,12 @@ a.primary {
   background: var(--foreground);
   color: var(--background);
   gap: 8px;
+  min-width: 120px;
 }
 
 a.secondary {
   border-color: var(--gray-alpha-200);
-  min-width: 180px;
+  min-width: 120px;
 }
 
 /* Enable hover only on non-touch devices */
