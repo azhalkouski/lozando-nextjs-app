@@ -46,10 +46,14 @@ while the browser's largest UI.
 }
 
 .pageHeader {
+  border: 1px solid red;
   width: 100%;
   display: grid;
-  grid-template-columns: 200px 1fr 200px;
-  grid-template-rows: 1fr;
+  grid-template-columns: 300px 1fr 300px;
+  grid-template-rows: 50px 50px;
+  grid-template-areas: 
+    "segNav logo actionsPanel"
+    "prodCatsGroupsNav prodCatsGroupsNav productsSearch";
   justify-items: center;
 }
 
@@ -61,6 +65,15 @@ while the browser's largest UI.
 
 .headerActionsPanel {
   justify-self: end;
+  grid-area: actionsPanel;
+}
+
+.productCategoriesGroupsNav {
+  grid-area: prodCatsGroupsNav;
+}
+
+.productsSearch {
+  grid-area: productsSearch;
 }
 
 .main {
@@ -124,8 +137,9 @@ a.secondary {
   min-width: 180px;
 }
 
-.customerTypeSegmentNavigation {
+.customerTypeSegregationNav {
   display: block;
+  grid-area: segNav;
 }
 
 .footer {
@@ -174,6 +188,7 @@ a.secondary {
 
   .headerLogo {
     justify-self: start;
+    grid-area: logo;
   }
 
   .main {

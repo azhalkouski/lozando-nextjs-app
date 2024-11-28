@@ -23,10 +23,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // if root segment is "/" then redirect to "/women-page"
+  // import { redirect } from 'next/navigation'
+  // redirect("/women-page")
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+        {/* Layout UI */}
+        <main>{children}</main>
       </body>
     </html>
   );

@@ -1,9 +1,12 @@
 import Image from "next/image";
 import Logo from "./ui/components/logo";
-import CustomerTypeSegmentNavigation from "./ui/components/customerTypeSegmentNavigation";
+import CustomerTypeSegregationNav from "./ui/components/customerTypeSegregationNav";
+import ProductCategoriesGroupsNav from "./ui/components/productCategoriesGroupsNav";
 import HeaderActionsPanel from "./ui/components/headerActionsPanel";
-import styles from "./page.module.css";
+import ProductsSearch from "./ui/components/productsSearch";
 import { ProductT } from './types';
+
+import styles from "./page.module.css";
 
 const API_KEY = process.env.LOZANDO_REST_API_KEY;
 
@@ -28,14 +31,20 @@ export default async function Home() {
   return (
     <div className={styles.page} style={{border: '2px solid green'}}>
       <header className={styles.pageHeader}>
-        <div className={styles.customerTypeSegmentNavigation}>
-          <CustomerTypeSegmentNavigation />
+        <div className={styles.customerTypeSegregationNav}>
+          <CustomerTypeSegregationNav />
         </div>
         <div className={styles.headerLogo}>
           <Logo />
         </div>
         <div className={styles.headerActionsPanel}>
           <HeaderActionsPanel />
+        </div>
+        <div className={styles.productCategoriesGroupsNav}>
+          <ProductCategoriesGroupsNav />
+        </div>
+        <div className={styles.productsSearch}>
+          <ProductsSearch />
         </div>
       </header>
       <main className={styles.main} style={{border: '1px solid red'}}>
