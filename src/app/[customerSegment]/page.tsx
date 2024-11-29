@@ -4,7 +4,7 @@ import CustomerSegmentNav from "../ui/components/customerSegmentNav";
 import ProductCategoriesGroupsNav from "../ui/components/productCategoriesGroupsNav";
 import HeaderActionsPanel from "../ui/components/headerActionsPanel";
 import ProductsSearch from "../ui/components/productsSearch";
-import { ProductT } from '../types';
+import { ProductT, CustomerSegmentT } from '../types';
 
 import styles from "../page.module.css";
 
@@ -17,15 +17,15 @@ type Props = {
   }>;
 }
 
-const homeHeaderTitles = {
+const homeHeaderTitles: { [key in CustomerSegmentT]: string } = {
   "women": "Women Home",
   "men": "Men Home"
-} as { [key: string]: string };
+};
 
 
 export default async function CustomerSegmentHome({ params }: Props) {
   const { customerSegment: _customerSegment } = await params;
-  const customerSegment = _customerSegment.toString();
+  const customerSegment = _customerSegment.toString() as CustomerSegmentT;
 
   const headerTitle = customerSegment in homeHeaderTitles
     ? homeHeaderTitles[customerSegment]
@@ -59,7 +59,7 @@ export default async function CustomerSegmentHome({ params }: Props) {
     <div className={styles.page} style={{border: '2px solid green'}}>
       <header className={styles.pageHeader}>
         <div className={styles.customerTypeSegregationNav}>
-          <CustomerSegmentNav />
+          <CustomerSegmentNav currentSegment={customerSegment} />
         </div>
         <div className={styles.headerLogo}>
           <Logo />
@@ -68,7 +68,7 @@ export default async function CustomerSegmentHome({ params }: Props) {
           <HeaderActionsPanel />
         </div>
         <div className={styles.productCategoriesGroupsNav}>
-          <ProductCategoriesGroupsNav />
+          <ProductCategoriesGroupsNav currentSegment={customerSegment} />
         </div>
         <div className={styles.productsSearch}>
           <ProductsSearch />

@@ -1,8 +1,10 @@
-"use client"
-
 import Link from "next/link";
-import useCurrenCustomerSegment from '../../hooks/useCurrenCustomerSegment';
-import { CustomerSegmentKeysEnum, RouteSegmentsEnum, CustomerSegmentLinkT } from "@/app/types";
+import {
+  CustomerSegmentT,
+  CustomerSegmentKeys,
+  CustomerSegmentRoutes,
+  CustomerSegmentLinkT
+} from "@/app/types";
 import styles from "./styles.module.css";
 
 /**
@@ -26,24 +28,24 @@ import styles from "./styles.module.css";
 
 const segmentLinks: CustomerSegmentLinkT[] = [
   {
-    href: RouteSegmentsEnum.WomenHome,
+    href: CustomerSegmentRoutes.women,
     linkTitle: "Women",
-    segmentKey: CustomerSegmentKeysEnum.women,
+    segmentKey: CustomerSegmentKeys.women,
 
   },
   {
-    href: RouteSegmentsEnum.MenHome,
+    href: CustomerSegmentRoutes.men,
     linkTitle: "Men",
-    segmentKey: CustomerSegmentKeysEnum.men,
+    segmentKey: CustomerSegmentKeys.men,
   },
 ];
 
+type CustomerSegmentNavProps = {
+  currentSegment: CustomerSegmentT;
+}
 
-// ! function CustomerSegmentNav(customerSegment: 'women' | 'men') {
-function CustomerSegmentNav() {
-  const currentCustomerSegment: CustomerSegmentKeysEnum =
-    useCurrenCustomerSegment(); // ! bad?
 
+function CustomerSegmentNav({ currentSegment }: CustomerSegmentNavProps) {
 
   return (
     <div className={styles.ctas}>
@@ -53,7 +55,7 @@ function CustomerSegmentNav() {
             key={href}
             href={href}
             className={
-              segmentKey === currentCustomerSegment
+              segmentKey === currentSegment
                 ? styles.primary
                 : styles.secondary
             }

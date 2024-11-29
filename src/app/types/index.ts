@@ -13,24 +13,31 @@ export type ProductT = {
   createdAt: Date;
 };
 
+export enum CustomerSegmentRoutes {
+  women = "/women",
+  men = "/men",
+
+}
+
+// RECONSIDER
 export enum RouteSegmentsEnum {
-  WomenHome = "/women-home",
   WomenClothing = "/women-clothing",
   WomenShoes = "/women-shoes",
-  MenHome = "/men-home",
   MenClothing = "/men-clothing",
   MenShoes = "/men-shoes",
 };
 
-export enum CustomerSegmentKeysEnum {
+export enum CustomerSegmentKeys {
   women = "women",
   men = "men"
 };
 
+export type CustomerSegmentT = 'women' | 'men';
+
 export type CustomerSegmentLinkT = {
   href: string;
   linkTitle: string;
-  segmentKey: CustomerSegmentKeysEnum;
+  segmentKey: CustomerSegmentKeys;
 }
 
 export type CategoryGroupLinkT = {
@@ -39,6 +46,6 @@ export type CategoryGroupLinkT = {
 };
 
 export type CategoryGroupLinksT = {
-  [key in CustomerSegmentKeysEnum]: CategoryGroupLinkT[]
+  [key in CustomerSegmentKeys]: CategoryGroupLinkT[]
 };
 

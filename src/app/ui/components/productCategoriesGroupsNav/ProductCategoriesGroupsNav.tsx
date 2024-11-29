@@ -1,9 +1,5 @@
-"use client"
-
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import useCurrenCustomerSegment from "../../hooks/useCurrenCustomerSegment";
-import { CategoryGroupLinksT, RouteSegmentsEnum } from "@/app/types";
+import { CustomerSegmentT, CategoryGroupLinksT, RouteSegmentsEnum } from "@/app/types";
 
 import styles from "../../../page.module.css";
 
@@ -30,11 +26,13 @@ const categoryGroupsLinks: CategoryGroupLinksT = {
   ]
 };
 
-// ! function ProductCategoriesGroupsNav(customerSegment: 'women' | 'men') {
-function ProductCategoriesGroupsNav() {
-  const currentCustomerSegment = useCurrenCustomerSegment(); // ! bad?
+type ProductCategoriesGroupsNavProps = {
+  currentSegment: CustomerSegmentT;
+}
 
-  const links = categoryGroupsLinks[currentCustomerSegment];
+
+function ProductCategoriesGroupsNav({ currentSegment }: ProductCategoriesGroupsNavProps) {
+  const links = categoryGroupsLinks[currentSegment];
 
   return (
     <div className={styles.ctas}>
