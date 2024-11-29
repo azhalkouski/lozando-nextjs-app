@@ -1,26 +1,56 @@
 export type ProductT = {
-  id: number;
-  discountId: number | null;
-  modelName: string;
-  description?: string;
-  brandId: number;
-  categoryId: number;
-  size: string;
+  articleNumber: string;
+  category: string;
+  subCategory: string;
+  gender: string;
+  isForKids: boolean;
+  brand: string;
+  name: string;
+  sizes: string[];
   color: string;
-  forMen: boolean;
-  forWomen: boolean;
-  price: number;
-  createdAt: Date;
-};
+  pattern: string;
+  neckline: string;
+  collar: string;
+  materials: {[key: string]: string};
+  sleeveLength: string;
+  shape: string;
+  fit: string;
+  clothingLength: string;
+  totalLength: string;
+  trouserRise: string;
+  fastening: string;
+  multipack: string;
+  pockets: string;
+  qualities: string;
+  backWidth: string;
+  hoodDetail: string;
+  specialSize: string;
+  occasion: string;
+  style: string;
+  cut: string;
+  collection: string;
+  details: string;
+  purchasePrice: string;
+};;
 
 export enum CustomerSegmentRoutes {
   women = "/women",
   men = "/men",
 }
 
+export enum CustomerSegmentKeys {
+  women = "women",
+  men = "men"
+};
+
 export enum CustomerSegmentSlugs {
   clothing = "/clothing",
   shoes = "/shoes",
+}
+
+export enum CustomerSegmentSlugKeys {
+  clothing = "clothing",
+  shoes = "shoes",
 }
 
 // RECONSIDER
@@ -29,11 +59,6 @@ export enum RouteSegmentsEnum {
   WomenShoes = "/women-shoes",
   MenClothing = "/men-clothing",
   MenShoes = "/men-shoes",
-};
-
-export enum CustomerSegmentKeys {
-  women = "women",
-  men = "men"
 };
 
 export type CustomerSegmentT = 'women' | 'men';

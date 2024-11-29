@@ -4,7 +4,13 @@ import CustomerSegmentNav from "../../ui/components/customerSegmentNav";
 import ProductCategoriesGroupsNav from "../../ui/components/productCategoriesGroupsNav";
 import HeaderActionsPanel from "../../ui/components/headerActionsPanel";
 import ProductsSearch from "../../ui/components/productsSearch";
-import { ProductT, CustomerSegmentT, CustomerSegmentSlugT } from '../../types';
+import {
+  ProductT,
+  CustomerSegmentT,
+  CustomerSegmentKeys,
+  CustomerSegmentSlugT,
+  CustomerSegmentSlugKeys,
+} from '../../types';
 
 import styles from "../../page.module.css";
 
@@ -48,7 +54,17 @@ export default async function SegmentSlugPage({ params }: Props) {
   let products: ProductT[] = [];
 
    try {
-     const response = await fetch('http://localhost:3000/api/products', {
+    // qeuryParamByCustomerSegment[customerSegment]
+    let query = customerSegment === CustomerSegmentKeys.women
+      ? 'gender=women'
+      : 'gender=men';
+    
+    // qeuryParamBySegmentSlug[segmentSlug]
+    query += segmentSlug === CustomerSegmentSlugKeys.clothing
+      ? '&categoryGroup=clothing'
+      : '&categoryGroup=shoes';
+
+     const response = await fetch(`http://localhost:3000/api/products?${query}`, {
        headers: {
          'x-api-key': API_KEY as string,
        }
@@ -87,9 +103,9 @@ export default async function SegmentSlugPage({ params }: Props) {
         </header>
         <section>
           <h2>Products</h2>
-          {products.map(({id, modelName, color, size, price}) => (
-            <div key={id}>
-              <p>{modelName} {color} {size} ${price}</p>
+          {products.map(({articleNumber, brand, name, purchasePrice}) => (
+            <div key={articleNumber}>
+              <p>{articleNumber} {brand} {name} {purchasePrice}</p>
             </div>
           ))}
         </section>

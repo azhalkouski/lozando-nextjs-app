@@ -4,7 +4,7 @@ import CustomerSegmentNav from "../ui/components/customerSegmentNav";
 import ProductCategoriesGroupsNav from "../ui/components/productCategoriesGroupsNav";
 import HeaderActionsPanel from "../ui/components/headerActionsPanel";
 import ProductsSearch from "../ui/components/productsSearch";
-import { ProductT, CustomerSegmentT } from '../types';
+import { ProductT, CustomerSegmentT, CustomerSegmentKeys } from '../types';
 
 import styles from "../page.module.css";
 
@@ -44,12 +44,18 @@ export default async function CustomerSegmentHome({ params }: Props) {
   let products: ProductT[] = [];
 
    try {
-     const response = await fetch('http://localhost:3000/api/products', {
-       headers: {
-         'x-api-key': API_KEY as string,
-       }
-     });
-     products = await response.json() as ProductT[];
+    // qeuryParamByCustomerSegment[customerSegment]
+    let query = customerSegment === CustomerSegmentKeys.women
+      ? 'gender=women'
+      : 'gender=men';
+
+    const response = await fetch(`http://localhost:3000/api/products?${query}`, {
+      headers: {
+        'x-api-key': API_KEY as string,
+      }
+    });
+
+    products = await response.json() as ProductT[];
     } catch (e) {
       // logger.error('Failed to load resource: http://localhost:3000/api/products');
       console.log('Failed to load resource: http://localhost:3000/api/products');
@@ -83,9 +89,9 @@ export default async function CustomerSegmentHome({ params }: Props) {
         </header>
         <section>
           <h2>Products</h2>
-          {products.map(({id, modelName, color, size, price}) => (
-            <div key={id}>
-              <p>{modelName} {color} {size} ${price}</p>
+          {products.map(({articleNumber, brand, name, purchasePrice}) => (
+            <div key={articleNumber}>
+              <p>{articleNumber} {brand} {name} {purchasePrice}</p>
             </div>
           ))}
         </section>
