@@ -16,7 +16,11 @@ export type ProductT = {
 export enum CustomerSegmentRoutes {
   women = "/women",
   men = "/men",
+}
 
+export enum CustomerSegmentSlugs {
+  clothing = "/clothing",
+  shoes = "/shoes",
 }
 
 // RECONSIDER
@@ -40,12 +44,13 @@ export type CustomerSegmentLinkT = {
   segmentKey: CustomerSegmentKeys;
 }
 
-export type CategoryGroupLinkT = {
-  href: string;
+export type CategoryGroupSlugT = {
+  slugHref: string;
   linkTitle: string;
 };
 
-export type CategoryGroupLinksT = {
-  [key in CustomerSegmentKeys]: CategoryGroupLinkT[]
+export type CategoryGroupLinkT = {
+  href: string;
+  linkTitle: string;
 };
 

@@ -1,44 +1,46 @@
 import Link from "next/link";
-import { CustomerSegmentT, CategoryGroupLinksT, RouteSegmentsEnum } from "@/app/types";
+import {
+  CustomerSegmentT,
+  CategoryGroupSlugT,
+  CategoryGroupLinkT,
+  CustomerSegmentSlugs
+} from "@/app/types";
 
 import styles from "../../../page.module.css";
 
-
-const categoryGroupsLinks: CategoryGroupLinksT = {
-  women: [
-    {
-      href: RouteSegmentsEnum.WomenClothing,
-      linkTitle: "Clothing",
-    },
-    {
-      href: RouteSegmentsEnum.WomenShoes,
-      linkTitle: "Shoes",
-    },
-  ],  men: [
-    {
-      href: RouteSegmentsEnum.MenClothing,
-      linkTitle: "Clothing",
-    },
-    {
-      href: RouteSegmentsEnum.MenShoes,
-      linkTitle: "Shoes",
-    },
-  ]
-};
+const categoryGroupsSlugs: CategoryGroupSlugT[] = [
+  {
+    slugHref: CustomerSegmentSlugs.clothing,
+    linkTitle: "Clothing",
+  },
+  {
+    slugHref: CustomerSegmentSlugs.shoes,
+    linkTitle: "Shoes",
+  },
+];
 
 type ProductCategoriesGroupsNavProps = {
   currentSegment: CustomerSegmentT;
 }
 
 
-function ProductCategoriesGroupsNav({ currentSegment }: ProductCategoriesGroupsNavProps) {
-  const links = categoryGroupsLinks[currentSegment];
+function ProductCategoriesGroupsNav({
+  currentSegment
+}: ProductCategoriesGroupsNavProps) {
+  const links: CategoryGroupLinkT[] = categoryGroupsSlugs.map((groupSlug) => {
+    return {
+      href: `/${currentSegment}${groupSlug.slugHref}`,
+      linkTitle: groupSlug.linkTitle,
+    }
+  });
 
   return (
     <div className={styles.ctas}>
       {links.map(({href, linkTitle}) => {
         return (
-          <Link key={href} href={href} className={styles.secondary}>{linkTitle}</Link>
+          <Link key={href} href={href} className={styles.secondary}>
+            {linkTitle}
+          </Link>
         );
       })}
     </div>

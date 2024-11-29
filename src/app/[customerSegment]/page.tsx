@@ -27,6 +27,8 @@ export default async function CustomerSegmentHome({ params }: Props) {
   const { customerSegment: _customerSegment } = await params;
   const customerSegment = _customerSegment.toString() as CustomerSegmentT;
 
+  // ? if customerSegment not recognized then redirect to 404 ?
+
   const headerTitle = customerSegment in homeHeaderTitles
     ? homeHeaderTitles[customerSegment]
     : '';
