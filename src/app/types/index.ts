@@ -38,6 +38,8 @@ export enum CustomerSegmentKeys {
 
 export type CustomerSegmentT = 'women' | 'men';
 
+export type CustomerSegmentSlugT = 'clothing' | 'shoes';
+
 export type CustomerSegmentLinkT = {
   href: string;
   linkTitle: string;
