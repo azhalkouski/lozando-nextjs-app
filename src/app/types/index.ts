@@ -22,15 +22,15 @@ export enum RouteSegmentsEnum {
   MenShoes = "/men-shoes",
 };
 
-export enum CustomerTypeSegmentKeysEnum {
+export enum CustomerSegmentKeysEnum {
   women = "women",
   men = "men"
 };
 
-export type CustomerTypeSegmentLinkT = {
+export type CustomerSegmentLinkT = {
   href: string;
   linkTitle: string;
-  segmentKey: CustomerTypeSegmentKeysEnum;
+  segmentKey: CustomerSegmentKeysEnum;
 }
 
 export type CategoryGroupLinkT = {
@@ -39,6 +39,6 @@ export type CategoryGroupLinkT = {
 };
 
 export type CategoryGroupLinksT = {
-  [key in CustomerTypeSegmentKeysEnum]: CategoryGroupLinkT[]
+  [key in CustomerSegmentKeysEnum]: CategoryGroupLinkT[]
 };
 

@@ -1,8 +1,8 @@
 "use client"
 
 import Link from "next/link";
-import useCurrenCustomerTypeSegment from '../../hooks/useCurrenCustomerTypeSegment';
-import { CustomerTypeSegmentKeysEnum, RouteSegmentsEnum, CustomerTypeSegmentLinkT } from "@/app/types";
+import useCurrenCustomerSegment from '../../hooks/useCurrenCustomerSegment';
+import { CustomerSegmentKeysEnum, RouteSegmentsEnum, CustomerSegmentLinkT } from "@/app/types";
 import styles from "./styles.module.css";
 
 /**
@@ -19,29 +19,30 @@ import styles from "./styles.module.css";
  * a segment group is a virtul group determined by `product.gender` value and
  * `product.isForKids` value.
  * 
- * CustomerTypeSegmentNav allows users to navigate between pages (and thus products)
+ * CustomerSegmentNav allows users to navigate between pages (and thus products)
  * dedicated for Women and for Men.
  */
 
 
-const segmentLinks: CustomerTypeSegmentLinkT[] = [
+const segmentLinks: CustomerSegmentLinkT[] = [
   {
     href: RouteSegmentsEnum.WomenHome,
     linkTitle: "Women",
-    segmentKey: CustomerTypeSegmentKeysEnum.women,
+    segmentKey: CustomerSegmentKeysEnum.women,
 
   },
   {
     href: RouteSegmentsEnum.MenHome,
     linkTitle: "Men",
-    segmentKey: CustomerTypeSegmentKeysEnum.men,
+    segmentKey: CustomerSegmentKeysEnum.men,
   },
 ];
 
 
-function customerTypeSegmentNav() {
-  const currentCustomerTypeSegment: CustomerTypeSegmentKeysEnum =
-    useCurrenCustomerTypeSegment();
+// ! function CustomerSegmentNav(customerSegment: 'women' | 'men') {
+function CustomerSegmentNav() {
+  const currentCustomerSegment: CustomerSegmentKeysEnum =
+    useCurrenCustomerSegment(); // ! bad?
 
 
   return (
@@ -52,7 +53,7 @@ function customerTypeSegmentNav() {
             key={href}
             href={href}
             className={
-              segmentKey === currentCustomerTypeSegment
+              segmentKey === currentCustomerSegment
                 ? styles.primary
                 : styles.secondary
             }
@@ -66,4 +67,4 @@ function customerTypeSegmentNav() {
   );
 }
 
-export default customerTypeSegmentNav;
+export default CustomerSegmentNav;
