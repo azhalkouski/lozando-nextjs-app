@@ -1,5 +1,5 @@
-import Header from "./Header";
-import Footer from "./Footer";
+import TopLevelHeader from "../ui/components/topLevelHeader";
+import TopLevelFooter from "../ui/components/topLevelFooter";
 import { CustomerSegmentT } from '../types';
 
 import styles from "../page.module.css";
@@ -19,11 +19,11 @@ export default async function Layout({
 
   return (
     <div className={styles.page} style={{border: '2px solid green'}}>
-      <Header customerSegment={customerSegment} />
+      <TopLevelHeader customerSegment={customerSegment} />
       <main className={styles.main} style={{border: '1px solid red'}}>
         {children}
       </main>
-      <Footer />
+      <TopLevelFooter />
     </div>
   );
 }

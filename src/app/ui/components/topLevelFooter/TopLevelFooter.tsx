@@ -4,7 +4,7 @@ import Image from "next/image";
 import styles from "../page.module.css";
 
 
-function Footer() {
+export default function TopLevelFooter() {
   return (
     <footer className={styles.footer} style={{ border: '1px solid orange' }}>
       <a
@@ -52,5 +52,3 @@ function Footer() {
     </footer>
   );
 };
-
-export default Footer;

@@ -1,9 +1,9 @@
-import Logo from "../ui/components/logo";
-import CustomerSegmentNav from "../ui/components/customerSegmentNav";
-import ProductCategoriesGroupsNav from "../ui/components/productCategoriesGroupsNav";
-import HeaderActionsPanel from "../ui/components/headerActionsPanel";
-import ProductsSearch from "../ui/components/productsSearch";
-import { CustomerSegmentT } from "../types";
+import Logo from "../logo";
+import CustomerSegmentNav from "../customerSegmentNav";
+import ProductCategoriesGroupsNav from "../productCategoriesGroupsNav";
+import HeaderActionsPanel from "../headerActionsPanel";
+import ProductsSearch from "../productsSearch";
+import { CustomerSegmentT } from "../../../types";
 
 import styles from "../page.module.css";
 
@@ -11,7 +11,7 @@ type Props = {
   customerSegment: CustomerSegmentT;
 };
 
-export default function Header({ customerSegment }: Props) {
+export default function TopLevelHeader({ customerSegment }: Props) {
   return (
     <header className={styles.pageHeader}>
       <div className={styles.customerTypeSegregationNav}>
