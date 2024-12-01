@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import FilterPanel from '../ui/components/filterPanel/FilterPanel';
 import { ProductT, CustomerSegmentT, GenderT } from '../types';
 import { fetchProducts } from '../api/products';
 import { genderByCustomerSegment } from "../utils/routeSegmentsMappings";
@@ -39,6 +40,7 @@ export default async function CustomerSegmentHome({ params }: Props) {
 
   return (
     <>
+      <FilterPanel />
       <section>
         <h2>Products</h2>
         {products.map(({articleNumber, brand, name, purchasePrice}) => (

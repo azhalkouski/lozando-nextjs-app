@@ -1,0 +1,7 @@
+.filtersContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 70%;
+  border: 1px solid red;
+}
