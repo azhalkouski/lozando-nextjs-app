@@ -53,14 +53,6 @@ export enum CustomerSegmentSlugKeys {
   shoes = "shoes",
 }
 
-// RECONSIDER
-export enum RouteSegmentsEnum {
-  WomenClothing = "/women-clothing",
-  WomenShoes = "/women-shoes",
-  MenClothing = "/men-clothing",
-  MenShoes = "/men-shoes",
-};
-
 export type CustomerSegmentT = 'women' | 'men';
 
 export type GenderT = 'women' | 'men';
