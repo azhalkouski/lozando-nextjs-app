@@ -63,7 +63,11 @@ export enum RouteSegmentsEnum {
 
 export type CustomerSegmentT = 'women' | 'men';
 
+export type GenderT = 'women' | 'men';
+
 export type CustomerSegmentSlugT = 'clothing' | 'shoes';
+
+export type CategoryGroupT = 'clothing' | 'shoes';
 
 export type CustomerSegmentLinkT = {
   href: string;
@@ -81,3 +85,8 @@ export type CategoryGroupLinkT = {
   linkTitle: string;
 };
 
+export type FetchProductsArgs = {
+  gender: GenderT;
+  categoryGroup?: CategoryGroupT;
+  isForKids?: Boolean;
+}

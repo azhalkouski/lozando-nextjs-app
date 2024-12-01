@@ -1,14 +1,15 @@
 import {
   ProductT,
   CustomerSegmentT,
-  CustomerSegmentKeys,
   CustomerSegmentSlugT,
-  CustomerSegmentSlugKeys,
+  GenderT,
+  CategoryGroupT,
 } from '../../types';
-
-import styles from "../../page.module.css";
-
-const API_KEY = process.env.LOZANDO_REST_API_KEY;
+import { fetchProducts } from "../../api/products";
+import {
+  genderByCustomerSegment,
+  categoryGroupBySegmentSlug,
+} from '@/app/utils/routeSegmentsMappings';
 
 
 type Props = {
@@ -29,10 +30,8 @@ export default async function SegmentSlugPage({ params }: Props) {
   const customerSegment = _customerSegment.toString() as CustomerSegmentT;
   const segmentSlug = _segmentSlug.toString() as CustomerSegmentSlugT;
 
-  console.log('segmentSlug', segmentSlug);
-
   // ? if customerSegment not recognized then redirect to 404 ?
-
+// ! ./pageUtils.ts
   const headerTitle = customerSegment in homeHeaderTitles
     ? homeHeaderTitles[customerSegment]
     : '';
@@ -44,30 +43,9 @@ export default async function SegmentSlugPage({ params }: Props) {
 
 
 
-
-  let products: ProductT[] = [];
-
-   try {
-    // ! qeuryParamByCustomerSegment[customerSegment]
-    let query = customerSegment === CustomerSegmentKeys.women
-      ? 'gender=women'
-      : 'gender=men';
-    
-    // ! qeuryParamBySegmentSlug[segmentSlug]
-    query += segmentSlug === CustomerSegmentSlugKeys.clothing
-      ? '&categoryGroup=clothing'
-      : '&categoryGroup=shoes';
-
-     const response = await fetch(`http://localhost:3000/api/products?${query}`, {
-       headers: {
-         'x-api-key': API_KEY as string,
-       }
-     });
-     products = await response.json() as ProductT[];
-    } catch (e) {
-      // logger.error('Failed to load resource: http://localhost:3000/api/products');
-      console.log('Failed to load resource: http://localhost:3000/api/products');
-    }
+  const gender: GenderT = genderByCustomerSegment[customerSegment];
+  const categoryGroup: CategoryGroupT = categoryGroupBySegmentSlug[segmentSlug];
+  const products: ProductT[] = await fetchProducts({gender, categoryGroup});
 
 
 

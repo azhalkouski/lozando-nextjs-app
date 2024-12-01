@@ -1,8 +1,6 @@
-import { ProductT, CustomerSegmentT, CustomerSegmentKeys } from '../types';
-
-import styles from "../page.module.css";
-
-const API_KEY = process.env.LOZANDO_REST_API_KEY;
+import { ProductT, CustomerSegmentT, GenderT } from '../types';
+import { fetchProducts } from '../api/products';
+import { genderByCustomerSegment } from "../utils/routeSegmentsMappings";
 
 
 type Props = {
@@ -17,17 +15,27 @@ const homeHeaderTitles: { [key in CustomerSegmentT]: string } = {
 };
 
 
+/**
+ * Data fetching goes here.
+ * Reacting on query params and re-fetching here
+ * 
+ * So, effectively, on Page level:
+ * - serach field fetch is handled
+ * - filters are handled
+ */
 export default async function CustomerSegmentHome({ params }: Props) {
   const { customerSegment: _customerSegment } = await params;
   const customerSegment = _customerSegment.toString() as CustomerSegmentT;
 
   // ? if customerSegment not recognized then redirect to 404 ?
+  // ! does it belong to layout.tsx? (404)
 
+  // const headerTitle = getPageTitle();
   const headerTitle = customerSegment in homeHeaderTitles
     ? homeHeaderTitles[customerSegment]
     : '';
 
-  if (headerTitle === '') {
+  if (headerTitle === '') { // ! encapsulated in getPageTitle()
     // TODO: logger.warn(`homeHeaderTitles dosn't have a title for customerSegment "${customerSegment}".`);
     console.log(`homeHeaderTitles dosn't have a title for customerSegment "${customerSegment}".`);
   }
@@ -35,25 +43,8 @@ export default async function CustomerSegmentHome({ params }: Props) {
 
 
 
-  let products: ProductT[] = [];
-
-   try {
-    // qeuryParamByCustomerSegment[customerSegment]
-    let query = customerSegment === CustomerSegmentKeys.women
-      ? 'gender=women'
-      : 'gender=men';
-
-    const response = await fetch(`http://localhost:3000/api/products?${query}`, {
-      headers: {
-        'x-api-key': API_KEY as string,
-      }
-    });
-
-    products = await response.json() as ProductT[];
-    } catch (e) {
-      // logger.error('Failed to load resource: http://localhost:3000/api/products');
-      console.log('Failed to load resource: http://localhost:3000/api/products');
-    }
+  const gender: GenderT = genderByCustomerSegment[customerSegment];
+  const products: ProductT[] = await fetchProducts({gender});
 
 
 
