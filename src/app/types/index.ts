@@ -69,11 +69,19 @@ export type CustomerSegmentSlugT = 'clothing' | 'shoes';
 
 export type CategoryGroupT = 'clothing' | 'shoes';
 
-export type CustomerSegmentLinkT = {
+export type PageRouteKeyT =
+  "women" |
+  "women/clothing" |
+  "women/shoes" |
+  "men" |
+  "men/clothing" |
+  "men/shoes";
+
+  export type CustomerSegmentLinkT = {
   href: string;
   linkTitle: string;
   segmentKey: CustomerSegmentKeys;
-}
+};
 
 export type CategoryGroupSlugT = {
   slugHref: string;
@@ -89,4 +97,4 @@ export type FetchProductsArgs = {
   gender: GenderT;
   categoryGroup?: CategoryGroupT;
   isForKids?: Boolean;
-}
+};
