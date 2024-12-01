@@ -1,6 +1,8 @@
+import { notFound } from "next/navigation";
 import TopLevelHeader from "../ui/components/topLevelHeader";
 import TopLevelFooter from "../ui/components/topLevelFooter";
 import { CustomerSegmentT } from '../types';
+import { customerSegments } from "../constants/routeSegments";
 
 import styles from "../page.module.css";
 
@@ -17,6 +19,10 @@ export default async function Layout({
   const { customerSegment: _customerSegment } = await params;
   const customerSegment = _customerSegment.toString() as CustomerSegmentT;
 
+  if (!customerSegments.includes(customerSegment)) {
+    notFound();
+  }
+
   return (
     <div className={styles.page} style={{border: '2px solid green'}}>
       <TopLevelHeader customerSegment={customerSegment} />
@@ -26,4 +32,4 @@ export default async function Layout({
       <TopLevelFooter />
     </div>
   );
-}
+};

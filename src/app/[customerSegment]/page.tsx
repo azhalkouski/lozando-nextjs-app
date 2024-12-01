@@ -50,5 +50,5 @@ export default async function CustomerSegmentHome({ params }: Props) {
 
     </>
   );
-}
+};
 

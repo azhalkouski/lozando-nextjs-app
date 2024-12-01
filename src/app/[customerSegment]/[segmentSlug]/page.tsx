@@ -53,5 +53,5 @@ export default async function SegmentSlugPage({ params }: Props) {
 
     </>
   );
-}
+};
 
