@@ -5,7 +5,7 @@ import HeaderActionsPanel from "../headerActionsPanel";
 import ProductsSearch from "../productsSearch";
 import { CustomerSegmentT } from "../../../types";
 
-import styles from "../page.module.css";
+import styles from "../../../page.module.css";
 
 type Props = {
   customerSegment: CustomerSegmentT;
