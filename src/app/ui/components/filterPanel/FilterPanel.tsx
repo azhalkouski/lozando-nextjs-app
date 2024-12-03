@@ -17,6 +17,20 @@ export default function FilterPanel() {
   function renderFilters(filters: FilterT<keyof FilterValueType>[]) {
     return filters.map((filter) => {
       const { name, placeholder, options, onSubmit, multiple } = filter;
+
+      // TODO
+      // if (name === 'price') {
+      //   return (
+      //     <RangeFilter
+      //     key={name}
+      //     name={name}
+      //     placeholder={placeholder}
+      //     options={options}
+      //     onSubmit={onSubmit}
+      //     multiple={multiple}
+      //   />
+      //   );
+      // }
   
       return (
         <Filter

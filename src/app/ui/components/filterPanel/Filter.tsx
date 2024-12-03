@@ -32,7 +32,6 @@ export default function Filter({
       ? target.value as string[]
       : target.value as string;
 
-    console.log(value)
     setSelectedValues(value);
   }
 
